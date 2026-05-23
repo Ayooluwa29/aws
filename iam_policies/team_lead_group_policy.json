@@ -1,0 +1,45 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowIAMGroupListing",
+            "Effect": "Allow",
+            "Action": [
+                "iam:ListGroups"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Sid": "AllowedGroupManagement",
+            "Effect": "Allow",
+            "Action": [
+                "iam:CreateGroup",
+                "iam:AddUserToGroup",
+                "iam:RemoveUserFromGroup",
+                "iam:ListAttachedGroupPolicies",
+                "iam:ListGroupPolicies"
+            ],
+            "Resource": [
+                "arn:aws:iam::{account_id}:user/*",
+                "arn:aws:iam::{account_id}:group/*"
+            ]
+        },
+        {
+            "Sid": "DeniedGroupManagement",
+            "Effect": "Deny",
+            "Action": [
+                "iam:DeleteGroup",
+                "iam:AttachUserPolicy",
+                "iam:AttachRolePolicy",
+                "iam:AttachGroupPolicy"
+            ],
+            "Resource": [
+                "arn:aws:iam::{account_id}:user/*",
+                "arn:aws:iam::{account_id}:group/*",
+                "arn:aws:iam::{account_id}:role/*"
+            ]
+        }
+    ]
+}

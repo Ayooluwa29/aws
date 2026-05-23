@@ -1,0 +1,40 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowBucketListing",
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListAllMyBuckets"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Sid": "AllowSchoolBucketOperations",
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket",
+                "s3:GetObject",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::*school*",
+                "arn:aws:s3:::*school*/*"
+            ]
+        },
+        {
+            "Sid": "DenySchoolBucketOperations",
+            "Effect": "Deny",
+            "Action": [
+                "s3:DeleteBucket",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::*school*",
+                "arn:aws:s3:::*school*/*"
+            ]
+        }
+    ]
+}

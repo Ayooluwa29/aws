@@ -1,0 +1,39 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowIAMListing",
+            "Effect": "Allow",
+            "Action": [
+                "iam:ListUsers"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Sid": "AllowedUserManagement",
+            "Effect": "Allow",
+            "Action": [
+                "iam:CreateUser",
+                "iam:ResetServiceSpecificCredential"
+            ],
+            "Resource": [
+                "arn:aws:iam::{account_id}:user/*"
+            ]
+        },
+        {
+            "Sid": "DeniedUserManagement",
+            "Effect": "Deny",
+            "Action": [
+                "iam:DeleteUser",
+                "iam:DeletePolicy",
+                "iam:CreateAccessKey"
+            ],
+            "Resource": [
+                "arn:aws:iam::{account_id}:user/*",
+                "arn:aws:iam::{account_id}:policy/*"
+            ]
+        }
+    ]
+}
